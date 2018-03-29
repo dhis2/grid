@@ -13,9 +13,10 @@ Grid grid = new ListGrid()
 
 for ( Person person : people )
 {
-  grid.addRow()
-  .addValue( person.getName() )
-  .addValue( person.getEmail() )
-  .addValue( person.getPhone() );
+  grid
+    .addRow()
+    .addValue( person.getName() )
+    .addValue( person.getEmail() )
+    .addValue( person.getPhone() );
 }
 ```
