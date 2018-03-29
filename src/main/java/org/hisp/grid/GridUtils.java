@@ -28,7 +28,7 @@ public class GridUtils
         {
             while ( headers.hasNext() )
             {
-                csvWriter.write( headers.next().getColumn() );
+                csvWriter.write( headers.next().getName() );
             }
 
             csvWriter.endRecord();
