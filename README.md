@@ -8,9 +8,9 @@ You can use Grid with Maven:
 
 ```xml
 <dependency>
-    <groupId>org.hisp</groupId>
-    <artifactId>grid</artifactId>
-    <version>1.0.0</version>
+  <groupId>org.hisp</groupId>
+  <artifactId>grid</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
 
