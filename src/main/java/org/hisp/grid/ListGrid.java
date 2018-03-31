@@ -23,6 +23,8 @@ import java.util.Set;
 
 /**
  * Implementation of the {@link Grid} interface using {@link ArrayList}.
+ * This implementation is annotated with {@code Jackson} annotations
+ * and hence can be rendered as JSON and XML using Jackson.
  */
 public class ListGrid
     implements Grid
