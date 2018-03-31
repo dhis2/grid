@@ -24,4 +24,4 @@ for ( Person person : people )
 
 #### Javadoc
 
-You can find [Javadoc here](https://ci.dhis2.org/job/grid-javadoc/).
+You can find [Javadoc here](https://ci.dhis2.org/job/grid-javadoc/javadoc/).
