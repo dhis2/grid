@@ -2,6 +2,9 @@ package org.hisp.grid;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Grid header.
+ */
 public class GridHeader
 {
     private String name;

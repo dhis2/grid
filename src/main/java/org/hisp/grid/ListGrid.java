@@ -21,6 +21,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Implementation of the {@link Grid} interface using {@link ArrayList}.
+ */
 public class ListGrid
     implements Grid
 {

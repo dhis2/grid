@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Two-dimensional grid structure with a set of methods for 
+ * manipulation.
+ */
 public interface Grid
 {
     /**
