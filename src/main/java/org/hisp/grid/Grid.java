@@ -336,6 +336,7 @@ public interface Grid
      * Indicates whether the column with the given index only contains null values.
      * 
      * @param columnIndex the column index.
+     * @return true if the column with the given index only contains null values.
      */
     boolean columnIsEmpty( int columnIndex );
 
