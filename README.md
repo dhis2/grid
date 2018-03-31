@@ -6,7 +6,7 @@ Grid is a Java library which provides a grid structure. The grid is annotated wi
 
 Sample usage:
 
-```
+```java
 Grid grid = new ListGrid()
   .setTitle( "Clients" )
   .addHeader( new GridHeader( "Name", "name" ) )
@@ -20,6 +20,13 @@ for ( Person person : people )
     .addValue( person.getEmail() )
     .addValue( person.getPhone() );
 }
+```
+
+Render to CSV (Writer retrieved e.g. from HttpServletResponse):
+
+```java
+Writer writer = response.getWriter();
+GridUtils.toCsv( grid, writer );
 ```
 
 #### Javadoc
