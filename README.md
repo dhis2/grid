@@ -1,6 +1,6 @@
 ### Grid
 
-Grid is a Java library which provides a grid structure. The grid is annotated with Jackson annotations and can be rendered to JSON and XML using a Jackson renderer. It can be rendered to CSV using the GridUtils utility class.
+Grid is a Java library which provides a two-dimensional grid structure. The grid is annotated with Jackson annotations and can be rendered to JSON and XML using a Jackson renderer. It can be rendered to CSV using the GridUtils utility class.
 
 #### Maven
 
