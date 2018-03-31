@@ -2,6 +2,18 @@
 
 Grid is a Java library which provides a grid structure. The grid is annotated with Jackson annotations and can be rendered to JSON and XML using a Jackson renderer. It can be rendered to CSV using the GridUtils utility class.
 
+#### Maven
+
+You can use Grid with Maven:
+
+```xml
+<dependency>
+    <groupId>org.hisp</groupId>
+    <artifactId>grid</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 #### Sample Usage
 
 Sample usage:
