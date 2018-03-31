@@ -43,4 +43,4 @@ GridUtils.toCsv( grid, writer );
 
 #### Javadoc
 
-You can find [Javadoc here](https://ci.dhis2.org/job/grid-javadoc/javadoc/).
+You can find [Javadoc here](https://ci.dhis2.org/job/grid-javadoc/javadoc/). The main interface is [Grid](https://ci.dhis2.org/job/grid-javadoc/javadoc/org/hisp/grid/Grid.html).
