@@ -20,17 +20,17 @@ To create a grid and add a few headers and rows:
 
 ```java
 Grid grid = new ListGrid()
-  .setTitle( "Clients" )
-  .addHeader( new GridHeader( "Name", "name" ) )
-  .addHeader( new GridHeader( "Email", "email" ) )
-  .addHeader( new GridHeader( "Phone", "phone" ) );
+    .setTitle( "Clients" )
+    .addHeader( new GridHeader( "Name", "name" ) )
+    .addHeader( new GridHeader( "Email", "email" ) )
+    .addHeader( new GridHeader( "Phone", "phone" ) );
 
 for ( Person person : people )
 {
-  grid.addRow()
-    .addValue( person.getName() )
-    .addValue( person.getEmail() )
-    .addValue( person.getPhone() );
+    grid.addRow()
+      .addValue( person.getName() )
+      .addValue( person.getEmail() )
+      .addValue( person.getPhone() );
 }
 ```
 
