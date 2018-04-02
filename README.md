@@ -16,7 +16,7 @@ You can use Grid with Maven:
 
 ## Sample Usage
 
-To create a grid and add some headers and rows:
+To create a grid and add a few headers and rows:
 
 ```java
 Grid grid = new ListGrid()
