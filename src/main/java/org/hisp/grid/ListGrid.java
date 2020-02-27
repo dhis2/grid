@@ -1,14 +1,5 @@
 package org.hisp.grid;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import org.hisp.grid.serializer.JacksonRowDataSerializer;
-
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,6 +12,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import org.hisp.grid.serializer.JacksonRowDataSerializer;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * Implementation of the {@link Grid} interface using {@link ArrayList}.
  * This implementation is annotated with {@code Jackson} annotations
@@ -30,7 +27,7 @@ public class ListGrid
     implements Grid
 {
     private static final String CUMULATIVE_SUFFIX = "_cumulative";
-    
+
     /**
      * The title of the grid.
      */
@@ -152,6 +149,12 @@ public class ListGrid
     }
 
     @Override
+    public Grid addHeader( String name )
+    {
+        return addHeader( new GridHeader( name ) );
+    }
+
+    @Override
     public Grid addHeader( int headerIndex, GridHeader header )
     {
         headers.add( headerIndex, header );
@@ -168,14 +171,14 @@ public class ListGrid
         {
             return this;
         }
-        
+
         for ( int i = gridHeaders.size() - 1; i >= 0; i-- )
         {
             headers.add( headerIndex, gridHeaders.get( i ) );
         }
-        
+
         updateColumnIndexMap();
-        
+
         return this;
     }
 
@@ -318,13 +321,13 @@ public class ListGrid
     @Override
     public Grid addValuesVar( Object... values )
     {
-        return addValues( values );        
+        return addValues( values );
     }
-    
+
     @Override
     public Grid addValuesAsList( List<Object> values )
     {
-        return addValues( values.toArray() );        
+        return addValues( values.toArray() );
     }
 
     @Override
@@ -499,9 +502,9 @@ public class ListGrid
         {
             return this;
         }
-        
+
         int lastCol = getWidth() - 1;
-        
+
         for ( int i = lastCol; i >= 0; i-- )
         {
             if ( columnIsEmpty( i ) )
@@ -509,7 +512,7 @@ public class ListGrid
                 removeColumn( i );
             }
         }
-        
+
         return this;
     }
 
@@ -517,20 +520,20 @@ public class ListGrid
     public boolean columnIsEmpty( int columnIndex )
     {
         verifyGridState();
-        
+
         for ( List<Object> row : grid )
         {
             Object val = row.get( columnIndex );
-            
+
             if ( val != null )
             {
                 return false;
             }
         }
-        
+
         return true;
     }
-    
+
     @Override
     public Grid removeColumn( int columnIndex )
     {
@@ -772,6 +775,7 @@ public class ListGrid
         return values;
     }
 
+    @Override
     @SuppressWarnings( "unchecked" )
     public <T> Map<String, T> getAsMap( int valueIndex, String keySeparator )
     {
@@ -791,57 +795,6 @@ public class ListGrid
         }
 
         return map;
-    }
-
-    // -------------------------------------------------------------------------
-    // SQL utility methods
-    // -------------------------------------------------------------------------
-
-    @Override
-    public Grid addHeaders( ResultSet rs )
-    {
-        try
-        {
-            ResultSetMetaData rsmd = rs.getMetaData();
-
-            int columnNo = rsmd.getColumnCount();
-
-            for ( int i = 1; i <= columnNo; i++ )
-            {
-                addHeader( new GridHeader( rsmd.getColumnLabel( i ), false, false ) );
-            }
-        }
-        catch ( SQLException ex )
-        {
-            throw new RuntimeException( ex );
-        }
-
-        return this;
-    }
-
-    @Override
-    public Grid addRows( ResultSet rs )
-    {
-        try
-        {
-            int cols = rs.getMetaData().getColumnCount();
-
-            while ( rs.next() )
-            {
-                addRow();
-
-                for ( int i = 1; i <= cols; i++ )
-                {
-                    addValue( rs.getObject( i ) );
-                }
-            }
-        }
-        catch ( SQLException ex )
-        {
-            throw new RuntimeException( ex );
-        }
-
-        return this;
     }
 
     // -------------------------------------------------------------------------
@@ -882,11 +835,11 @@ public class ListGrid
             columnIndexMap.put( headers.get( i ).getColumn(), i );
         }
     }
-    
+
     /**
      * Indicates whether the grid has any values, i.e. at least one column and
      * one row.
-     * 
+     *
      * @return true if grid has any values.
      */
     private boolean hasValues()
@@ -897,7 +850,7 @@ public class ListGrid
     /**
      * Joins the elements of the given iterator using the given separator to
      * separate the items.
-     * 
+     *
      * @param iterator the iterator.
      * @param separator the separator.
      * @return the joined string.
@@ -908,16 +861,16 @@ public class ListGrid
         {
             return null;
         }
-        
+
         Iterator<?> iterator = collection.iterator();
-        
+
         if ( iterator == null || !iterator.hasNext() )
         {
             return "";
         }
-        
+
         final Object first = iterator.next();
-        
+
         if ( !iterator.hasNext() )
         {
             final String result = Objects.toString( first, "" );
@@ -925,9 +878,9 @@ public class ListGrid
         }
 
         // Two or more elements
-        
+
         final StringBuilder buffer = new StringBuilder();
-        
+
         if ( first != null )
         {
             buffer.append( first );
@@ -939,15 +892,15 @@ public class ListGrid
             {
                 buffer.append( separator );
             }
-            
+
             final Object obj = iterator.next();
-            
+
             if ( obj != null )
             {
                 buffer.append( obj );
             }
         }
-        
+
         return buffer.toString();
     }
 

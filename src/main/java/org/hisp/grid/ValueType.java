@@ -5,5 +5,16 @@ package org.hisp.grid;
  */
 public enum ValueType
 {
-    NUMBER, TEXT, BOOLEAN;
+    SMALLINT,
+    INTEGER,
+    BIGINT,
+    NUMERIC,
+    REAL,
+    DOUBLE,
+    BOOLEAN,
+    CHAR,
+    TEXT,
+    DATE,
+    TIMESTAMP,
+    TIMESTAMPTZ;
 }

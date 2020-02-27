@@ -1,26 +1,25 @@
 package org.hisp.grid;
 
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * Two-dimensional grid structure with a set of methods for 
+ * Two-dimensional grid structure with a set of methods for
  * manipulation.
  */
 public interface Grid
 {
     /**
      * Returns the grid title.
-     * 
+     *
      * @return the title.
      */
     String getTitle();
 
     /**
      * Sets the grid title.
-     * 
+     *
      * @param title the title.
      * @return this grid.
      */
@@ -28,14 +27,14 @@ public interface Grid
 
     /**
      * Returns the grid subtitle.
-     * 
+     *
      * @return the subtitle.
      */
     String getSubtitle();
 
     /**
      * Sets the grid subtitle.
-     * 
+     *
      * @param subtitle the subtitle.
      * @return this grid.
      */
@@ -43,14 +42,14 @@ public interface Grid
 
     /**
      * Returns the grid table.
-     * 
+     *
      * @return the table.
      */
     String getTable();
 
     /**
      * Sets the grid table.
-     * 
+     *
      * @param table the table.
      * @return this grid.
      */
@@ -58,21 +57,21 @@ public interface Grid
 
     /**
      * Returns all {@link GridHeader}.
-     * 
+     *
      * @return a list of grid headers.
      */
     List<GridHeader> getHeaders();
 
     /**
      * Returns map of meta data.
-     * 
+     *
      * @return the meta data as a map.
      */
     Map<String, Object> getMetaData();
 
     /**
      * Sets map of meta data.
-     * 
+     *
      * @param metaData the meta data as a map.
      * @return this grid.
      */
@@ -80,7 +79,7 @@ public interface Grid
 
     /**
      * Adds a key-value pair to meta-data.
-     * 
+     *
      * @param key the key.
      * @param value the value.
      * @return this grid.
@@ -89,7 +88,7 @@ public interface Grid
 
     /**
      * Returns all visible {@link GridHeader}, i.e. headers which are not hidden.
-     * 
+     *
      * @return a list of grid headers.
      */
     List<GridHeader> getVisibleHeaders();
@@ -111,6 +110,14 @@ public interface Grid
     Grid addHeader( GridHeader header );
 
     /**
+     * Adds a header value. Short-hand for {@code addHeader( new GridHeader( String ) )}.
+     *
+     * @param name the grid header name.
+     * @return this grid.
+     */
+    Grid addHeader( String name );
+
+    /**
      * Adds a header value at the given column index.
      *
      * @param columnIndex the column index to insert the grid header at.
@@ -121,7 +128,7 @@ public interface Grid
 
     /**
      * Adds a list of headers.
-     * 
+     *
      * @param headerIndex the index to insert the first grid header at.
      * @param headers list of headers.
      * @return this grid.
@@ -138,28 +145,28 @@ public interface Grid
 
     /**
      * Returns the current height / number of rows in the grid.
-     * 
+     *
      * @return the grid height.
      */
     int getHeight();
 
     /**
      * Returns the current width / number of columns in the grid.
-     * 
+     *
      * @return the grid width.
      */
     int getWidth();
 
     /**
      * Returns the current width / number of visible columns in the grid.
-     * 
+     *
      * @return the visible grid width.
      */
     int getVisibleWidth();
 
     /**
      * Adds a new row the the grid and moves the cursor accordingly.
-     * 
+     *
      * @return this grid.
      */
     Grid addRow();
@@ -190,7 +197,7 @@ public interface Grid
     Grid addValues( Object[] values );
 
     /**
-     * Adds the given values to the end of the current row in the specified 
+     * Adds the given values to the end of the current row in the specified
      * order.
      *
      * @param values the values to add.
@@ -209,7 +216,7 @@ public interface Grid
 
     /**
      * Adds an empty value to the Grid at the current row.
-     * 
+     *
      * @return this grid.
      */
     Grid addEmptyValue();
@@ -240,7 +247,7 @@ public interface Grid
 
     /**
      * Returns all rows.
-     * 
+     *
      * @return a list of list of values.
      */
     List<List<Object>> getRows();
@@ -248,7 +255,7 @@ public interface Grid
     /**
      * Returns all visible rows, ie. rows with a corresponding header that is
      * not hidden.
-     * 
+     *
      * @return a list of list of values.
      */
     List<List<Object>> getVisibleRows();
@@ -329,16 +336,16 @@ public interface Grid
     Grid removeColumn( GridHeader header );
 
     /**
-     * Removes from the grid columns with corresponding headers which only contain 
+     * Removes from the grid columns with corresponding headers which only contain
      * null values.
-     * 
+     *
      * @return this grid.
      */
     Grid removeEmptyColumns();
 
     /**
      * Indicates whether the column with the given index only contains null values.
-     * 
+     *
      * @param columnIndex the column index.
      * @return true if the column with the given index only contains null values.
      */
@@ -346,7 +353,7 @@ public interface Grid
 
     /**
      * Removes the current row from the grid.
-     * 
+     *
      * @return this grid.
      */
     Grid removeCurrentWriteRow();
@@ -429,7 +436,7 @@ public interface Grid
 
     /**
      * Returns indexes of the meta grid headers.
-     * 
+     *
      * @return a list of indexes.
      */
     List<Integer> getMetaColumnIndexes();
@@ -452,21 +459,4 @@ public interface Grid
      * @return a map of each row.
      */
     <T> Map<String, T> getAsMap( int valueIndex, String keySeparator );
-
-    /**
-     * Adds a set of headers based on the column names of the given SQL result set.
-     *
-     * @param rs the result set.
-     * @return this grid.
-     */
-    Grid addHeaders( ResultSet rs );
-
-    /**
-     * Moves the cursor the next row and adds values for each column of the given
-     * SQL result set.
-     *
-     * @param rs the result set.
-     * @return this grid.
-     */
-    Grid addRows( ResultSet rs );
 }
