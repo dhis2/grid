@@ -1,6 +1,8 @@
+@Library('pipeline-library') _
+
 pipeline {
     agent {
-        label 'ec2-jdk11'
+        label 'ec2-jdk8'
     }
 
     triggers {
