@@ -1,6 +1,12 @@
 # Grid
 
-Grid is a Java library which provides a two-dimensional grid structure. A grid has a set of rows and columns. Each column can have a corresponding header. The grid implementation is annotated with Jackson annotations and can be rendered to JSON and XML using a Jackson renderer. A grid can be rendered to CSV using the `GridUtils` utility class.
+## Overview
+
+Grid is a Java library which provides a two-dimensional grid structure. A grid has a set of rows and columns. Each column can have a corresponding header. The grid implementation is annotated with Jackson annotations and can be rendered to JSON and XML using a Jackson renderer. A grid can be rendered to CSV and HTML using the `GridUtils` utility class.
+
+## Requirements
+
+Java 17 is required.
 
 ## Maven
 
@@ -10,27 +16,27 @@ You can use Grid with Maven:
 <dependency>
   <groupId>org.hisp</groupId>
   <artifactId>grid</artifactId>
-  <version>1.0.0</version>
+  <version>${grid.version}</version>
 </dependency>
 ```
 
-## Sample Usage
+## Get started
 
-To create a grid and add a few headers and rows:
+To create a grid and add headers and rows:
 
 ```java
 Grid grid = new ListGrid()
     .setTitle( "Clients" )
-    .addHeader( new GridHeader( "Name", "name" ) )
-    .addHeader( new GridHeader( "Email", "email" ) )
-    .addHeader( new GridHeader( "Phone", "phone" ) );
+    .addHeader(new GridHeader("Name", "name"))
+    .addHeader(new GridHeader("Email", "email"))
+    .addHeader(new GridHeader("Phone", "phone"));
 
-for ( Person person : people )
+for (Person person : people)
 {
     grid.addRow()
-        .addValue( person.getName() )
-        .addValue( person.getEmail() )
-        .addValue( person.getPhone() );
+        .addValue(person.getName())
+        .addValue(person.getEmail())
+        .addValue(person.getPhone());
 }
 ```
 
@@ -38,9 +44,12 @@ Render to CSV (`Writer` retrieved e.g. from `HttpServletResponse`):
 
 ```java
 Writer writer = response.getWriter();
-GridUtils.toCsv( grid, writer );
+GridUtils.toCsv(grid, writer);
 ```
 
-## Javadoc
+Render to HTML:
 
-You can find [Javadoc here](https://ci.dhis2.org/job/grid-javadoc/javadoc/).
+```java
+Writer writer = reponse.getWriter();
+GridUtils.toHtml(grid, writer);
+```

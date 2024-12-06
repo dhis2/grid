@@ -91,12 +91,12 @@ public class HtmlGridWriter implements GridWriter {
     b.append(
         String.format(
             """
-        <div class="gridDiv">
-        <h3>$!encoder.htmlEncode( $grid.title )</h3>
-        <h4>$!encoder.htmlEncode( $grid.subtitle )</h4>
-        <table class="listTable gridTable">
-        <thead>
-        <tr>
+            <div class="gridDiv">
+            <h3>$!encoder.htmlEncode( $grid.title )</h3>
+            <h4>$!encoder.htmlEncode( $grid.subtitle )</h4>
+            <table class="listTable gridTable">
+            <thead>
+            <tr>
             """,
             escapeHtml(grid.getTitle()),
             escapeHtml(grid.getSubtitle())));
