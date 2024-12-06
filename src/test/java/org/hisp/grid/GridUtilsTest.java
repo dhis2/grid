@@ -29,7 +29,6 @@ package org.hisp.grid;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import org.hisp.grid.csv.CsvWriteOptions;
@@ -37,7 +36,7 @@ import org.junit.jupiter.api.Test;
 
 class GridUtilsTest {
   @Test
-  public void testToCsv() throws IOException {
+  void testToCsv() throws IOException {
     Grid grid =
         new ListGrid()
             .addHeader("Name")
