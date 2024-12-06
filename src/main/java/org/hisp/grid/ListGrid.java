@@ -27,9 +27,6 @@
  */
 package org.hisp.grid;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -42,6 +39,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import org.hisp.grid.serializer.JacksonRowDataSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Implementation of the {@link Grid} interface using {@link ArrayList}. This implementation is
@@ -393,12 +393,9 @@ public class ListGrid implements Grid {
     int currentColumnIndex = 0;
 
     if (grid.size() != columnValues.size()) {
-      throw new IllegalStateException(
-          "Number of column values ("
-              + columnValues.size()
-              + ") is not equal to number of rows ("
-              + grid.size()
-              + ")");
+      throw new IllegalStateException(String.format(
+          "Number of column values (%d) is not equal to number of rows (%d)", 
+          columnValues.size(), grid.size()));
     }
 
     for (int i = 0; i < grid.size(); i++) {
@@ -416,12 +413,9 @@ public class ListGrid implements Grid {
     int currentColumnIndex = 0;
 
     if (grid.size() != columnValues.size()) {
-      throw new IllegalStateException(
-          "Number of column values ("
-              + columnValues.size()
-              + ") is not equal to number of rows ("
-              + grid.size()
-              + ")");
+      throw new IllegalStateException(String.format(
+          "Number of column values (%d) is not equal to number of rows (%d)", 
+          columnValues.size(), grid.size()));
     }
 
     for (int i = 0; i < grid.size(); i++) {
@@ -544,7 +538,7 @@ public class ListGrid implements Grid {
   public Grid limitGrid(int startPos, int endPos) {
     if (startPos < 0 || endPos < startPos || endPos > getHeight()) {
       throw new IllegalStateException(
-          "Illegal start / end pos: " + startPos + ", " + endPos + ", " + getHeight());
+          "Illegal start or end pos: " + startPos + ", " + endPos + ", " + getHeight());
     }
 
     grid = grid.subList(startPos, endPos);
@@ -555,7 +549,7 @@ public class ListGrid implements Grid {
   @Override
   public Grid sortGrid(int columnIndex, int order) {
     if (order == 0 || !hasValues()) {
-      return this; // No sorting
+      return this;
     }
 
     columnIndex--;
@@ -732,13 +726,9 @@ public class ListGrid implements Grid {
 
     for (List<Object> row : grid) {
       if (rowLength != null && rowLength != row.size()) {
-        throw new IllegalStateException(
-            "Grid rows do not have the same number of cells, previous: "
-                + rowLength
-                + ", this: "
-                + row.size()
-                + ", at row: "
-                + rowPos);
+        throw new IllegalStateException(String.format(
+            "Grid rows do not have the same number of cells, previous: %d, this: %d, at row: %d",
+            rowLength, row.size(), rowPos));
       }
 
       rowPos++;
