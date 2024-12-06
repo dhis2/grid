@@ -22,7 +22,7 @@ You can use Grid with Maven:
 
 ## Get started
 
-To create a grid and add headers and rows:
+Create a grid and add headers and rows:
 
 ```java
 Grid grid = new ListGrid()

@@ -44,20 +44,17 @@ public class HtmlGridWriter implements GridWriter {
   }
 
   private String getHtmlDocument(Grid grid) {
-    return new StringBuilder()
-        .append("""
+    return String.format(
+        """
         <!DOCTYPE html>
         <html>
-        <head>""")
-        .append(getHtmlStyle())
-        .append("""
+        <head>
+        %s
         </head>
-        <body>""")
-        .append(toHtmlTable(grid))
-        .append("""
+        <body>
+        %s
         </body>
-        </html""")
-        .toString();
+        </html""", getHtmlStyle(), getHtmlTable(grid));
   }
 
   private String getHtmlStyle() {
@@ -81,20 +78,19 @@ public class HtmlGridWriter implements GridWriter {
           background-color: #f3f3f3;
           font-weight: bold;
         }
-        </style>
-        """;
+        </style>""";
   }
 
-  private String toHtmlTable(Grid grid) {
+  private String getHtmlTable(Grid grid) {
     StringBuilder b = new StringBuilder();
 
     b.append(
         String.format(
             """
             <div class="gridDiv">
-            <h3>$!encoder.htmlEncode( $grid.title )</h3>
-            <h4>$!encoder.htmlEncode( $grid.subtitle )</h4>
-            <table class="listTable gridTable">
+            <h2>%s</h2>
+            <h3>%s</h3>
+            <table class="gridTable">
             <thead>
             <tr>
             """,
@@ -113,7 +109,7 @@ public class HtmlGridWriter implements GridWriter {
     for (List<Object> row : grid.getVisibleRows()) {
       b.append("<tr>");
       for (Object value : row) {
-        b.append("<td>").append(escapeHtml(value)).append("<td>");
+        b.append("<td>").append(escapeHtml(value)).append("</td>");
       }
       b.append("</tr>");
     }
