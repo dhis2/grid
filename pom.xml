@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
+
   <groupId>org.hisp</groupId>
   <artifactId>grid</artifactId>
   <version>1.1.1</version>
   <packaging>jar</packaging>
   <name>Grid</name>
-	
+
   <description>Grid structure with rendering in many formats.</description>
-  
+
   <url>https://github.com/dhis2/grid</url>
-  
+
   <organization>
     <name>UiO</name>
     <url>http://www.dhis2.org</url>
   </organization>
+
+  <licenses>
+    <license>
+      <name>BSD</name>
+      <url>http://opensource.org/licenses/BSD-3-Clause</url>
+    </license>
+  </licenses>
 
   <developers>
     <developer>
@@ -27,24 +32,34 @@
       <organizationUrl>http://www.uio.no/</organizationUrl>
     </developer>
   </developers>
-  
-  <licenses>
-    <license>
-      <name>BSD</name>
-      <url>http://opensource.org/licenses/BSD-3-Clause</url>
-    </license>
-  </licenses>
 
   <scm>
     <connection>scm:git:git@github.com:dhis2/grid.git</connection>
-    <developerConnection>scm:git:git@github.com:dhis2/grid.gitt</developerConnection>
+    <developerConnection>scm:git:git@github.com:dhis2/grid.git</developerConnection>
     <url>git@github.com:dhis2/grid.git</url>
   </scm>
-  
+
   <issueManagement>
-	<system>GitHub</system>
-	<url>https://github.com/dhis2/grid</url>
+    <system>GitHub</system>
+    <url>https://github.com/dhis2/grid</url>
   </issueManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <spotless.version>2.43.0</spotless.version>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -65,17 +80,6 @@
     </dependency>
   </dependencies>
 
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-    </repository>
-  </distributionManagement>
-  
   <build>
     <plugins>
       <plugin>
@@ -114,33 +118,38 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
-        <extensions>true</extensions>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless.version}</version>
         <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          <upToDateChecking>
+            <enabled>true</enabled>
+          </upToDateChecking>
+          <java>
+            <googleJavaFormat/>
+            <trimTrailingWhitespace/>
+            <licenseHeader>
+              <file>license-header</file>
+            </licenseHeader>
+          </java>
+          <pom>
+            <toggleOffOn>
+              <off>@formatter:off</off>
+                <on>@formatter:on</on>
+            </toggleOffOn>
+            <includes>
+              <include>pom.xml</include>
+            </includes>
+            <sortPom>
+              <expandEmptyElements>false</expandEmptyElements>
+            </sortPom>
+          </pom>
+          <lineEndings>UNIX</lineEndings>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
-  
+
   <profiles>
     <profile>
       <!-- Profile used for OSSHR deployment -->
@@ -206,5 +215,5 @@
       </build>
     </profile>
   </profiles>
-	
+
 </project>
