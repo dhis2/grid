@@ -79,7 +79,6 @@ class GridUtilsTest {
     String output = writer.toString();
 
     assertNotNull(output);
-    System.out.println(output);
     assertTrue(output.startsWith("""
         <!DOCTYPE html>
         <html>
