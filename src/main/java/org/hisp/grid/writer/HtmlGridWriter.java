@@ -27,6 +27,8 @@
  */
 package org.hisp.grid.writer;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -36,14 +38,12 @@ import org.hisp.grid.GridHeader;
 
 public class HtmlGridWriter implements GridWriter {
 
-  private final Grid grid;
-
-  public HtmlGridWriter(Grid grid) {
-    this.grid = grid;
+  @Override
+  public void write(Grid grid, Writer writer) throws IOException {
+    writer.write(getHtmlDocument(grid));
   }
 
-  @Override
-  public String writeToString() {
+  private String getHtmlDocument(Grid grid) {
     return new StringBuilder()
         .append("""
         <!DOCTYPE html>
@@ -124,7 +124,7 @@ public class HtmlGridWriter implements GridWriter {
         </div>""").toString();
   }
 
-  static String escapeHtml(Object input) {
+  private String escapeHtml(Object input) {
     String value = String.valueOf(ObjectUtils.firstNonNull(input, StringUtils.EMPTY));
     return StringEscapeUtils.escapeHtml4(StringUtils.trimToEmpty(value));
   }

@@ -27,7 +27,6 @@
  */
 package org.hisp.grid;
 
-import com.csvreader.CsvWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.sql.ResultSet;
@@ -36,17 +35,15 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.hisp.grid.csv.CsvWriteOptions;
 import org.hisp.grid.util.MapBuilder;
+import org.hisp.grid.writer.CsvGridWriter;
 import org.hisp.grid.writer.HtmlGridWriter;
 
 /** Utility methods for {@link Grid}. */
 public class GridUtils {
-  private static final String EMPTY = "";
-
   private static final Map<Integer, ValueType> SQL_VALUE_TYPE_MAP =
       new MapBuilder<Integer, ValueType>()
           .put(Types.BIT, ValueType.BOOLEAN)
@@ -109,30 +106,7 @@ public class GridUtils {
     if (grid == null) {
       return;
     }
-
-    CsvWriter csvWriter = getCsvWriter(writer, options);
-
-    Iterator<GridHeader> headers = grid.getHeaders().iterator();
-
-    if (!grid.getHeaders().isEmpty()) {
-      while (headers.hasNext()) {
-        csvWriter.write(headers.next().getName());
-      }
-
-      csvWriter.endRecord();
-    }
-
-    for (List<Object> row : grid.getRows()) {
-      Iterator<Object> columns = row.iterator();
-
-      while (columns.hasNext()) {
-        Object value = columns.next();
-
-        csvWriter.write(value != null ? String.valueOf(value) : EMPTY);
-      }
-
-      csvWriter.endRecord();
-    }
+    new CsvGridWriter(options).write(grid, writer);
   }
 
   /**
@@ -147,7 +121,7 @@ public class GridUtils {
       return;
     }
 
-    writer.write(new HtmlGridWriter(grid).writeToString());
+    new HtmlGridWriter().write(grid, writer);
   }
 
   /**
@@ -204,11 +178,5 @@ public class GridUtils {
 
   private static ValueType fromSqlType(Integer sqlType) {
     return SQL_VALUE_TYPE_MAP.getOrDefault(sqlType, ValueType.TEXT);
-  }
-
-  private static CsvWriter getCsvWriter(Writer writer, CsvWriteOptions options) {
-    CsvWriter csvWriter = new CsvWriter(writer, options.getDelimiter());
-    csvWriter.setForceQualifier(options.isForceQualifier());
-    return csvWriter;
   }
 }

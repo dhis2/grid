@@ -27,10 +27,54 @@
  */
 package org.hisp.grid.writer;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
+import com.csvreader.CsvWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Iterator;
+import java.util.List;
 import org.hisp.grid.Grid;
+import org.hisp.grid.GridHeader;
+import org.hisp.grid.csv.CsvWriteOptions;
 
-public interface GridWriter {
-  void write(Grid grid, Writer writer) throws IOException;
+public class CsvGridWriter implements GridWriter {
+  private final CsvWriteOptions options;
+
+  public CsvGridWriter(CsvWriteOptions options) {
+    this.options = options;
+  }
+
+  @Override
+  public void write(Grid grid, Writer writer) throws IOException {
+    CsvWriter csvWriter = getCsvWriter(writer, options);
+
+    Iterator<GridHeader> headers = grid.getHeaders().iterator();
+
+    if (!grid.getHeaders().isEmpty()) {
+      while (headers.hasNext()) {
+        csvWriter.write(headers.next().getName());
+      }
+
+      csvWriter.endRecord();
+    }
+
+    for (List<Object> row : grid.getRows()) {
+      Iterator<Object> columns = row.iterator();
+
+      while (columns.hasNext()) {
+        Object value = columns.next();
+
+        csvWriter.write(value != null ? String.valueOf(value) : EMPTY);
+      }
+
+      csvWriter.endRecord();
+    }
+  }
+
+  private CsvWriter getCsvWriter(Writer writer, CsvWriteOptions options) {
+    CsvWriter csvWriter = new CsvWriter(writer, options.getDelimiter());
+    csvWriter.setForceQualifier(options.isForceQualifier());
+    return csvWriter;
+  }
 }
