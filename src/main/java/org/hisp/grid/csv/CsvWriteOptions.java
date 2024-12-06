@@ -1,9 +1,18 @@
 package org.hisp.grid.csv;
 
+/**
+ * CSV writing options.
+ */
 public class CsvWriteOptions
 {
+    /**
+     * Column delimiter.
+     */
     private char delimiter;
 
+    /**
+     * Whether to force a qualifier.
+     */
     private boolean forceQualifier;
 
     public char getDelimiter()
