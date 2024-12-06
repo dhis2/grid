@@ -28,10 +28,10 @@ package org.hisp.grid;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.hisp.grid.GridUtils.getList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,13 +42,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Lars Helge Overland
  */
-public class GridTest
+class GridTest
 {
     private Grid gridA;
     private Grid gridB;
@@ -57,8 +57,8 @@ public class GridTest
     private GridHeader headerB;
     private GridHeader headerC;
 
-    @Before
-    public void setUp()
+    @BeforeEach
+    public void beforeEach()
     {
         gridA = new ListGrid();
         gridB = new ListGrid();
@@ -98,7 +98,7 @@ public class GridTest
     }
 
     @Test
-    public void testAddGrid()
+    void testAddGrid()
     {
         gridA.addRows( gridB );
 
@@ -106,7 +106,7 @@ public class GridTest
     }
 
     @Test
-    public void testAddHeaders()
+    void testAddHeaders()
     {
         Grid grid = new ListGrid();
 
@@ -130,7 +130,7 @@ public class GridTest
     }
 
     @Test
-    public void testColumnIsEmpty()
+    void testColumnIsEmpty()
     {
         Grid grid = new ListGrid()
             .addRow().addValuesVar( "A1", null, "A3", null )
@@ -145,7 +145,7 @@ public class GridTest
     }
 
     @Test
-    public void testRemoveEmptyColumns()
+    void testRemoveEmptyColumns()
     {
         Grid grid = new ListGrid()
             .addHeader( new GridHeader( "H1" ) )
@@ -166,7 +166,7 @@ public class GridTest
     }
 
     @Test
-    public void testRemoveEmptyColumnsWithoutHeaders()
+    void testRemoveEmptyColumnsWithoutHeaders()
     {
         Grid grid = new ListGrid()
             .addRow().addValuesVar( "A1", null, "A3", null )
@@ -182,7 +182,7 @@ public class GridTest
     }
 
     @Test
-    public void testAddHeaderList()
+    void testAddHeaderList()
     {
         Grid grid = new ListGrid();
 
@@ -210,7 +210,7 @@ public class GridTest
     }
 
     @Test
-    public void testSubstituteMetaData()
+    void testSubstituteMetaData()
     {
         Map<Object, Object> metaData = new HashMap<>();
         metaData.put( 11, "Eleven" );
@@ -232,7 +232,7 @@ public class GridTest
     }
 
     @Test
-    public void testSubstituteMetaDataForIndexA()
+    void testSubstituteMetaDataForIndexA()
     {
         Map<Object, Object> metaData = new HashMap<>();
         metaData.put( 11, "Eleven" );
@@ -254,7 +254,7 @@ public class GridTest
     }
 
     @Test
-    public void testSubstituteMetaDataForIndexB()
+    void testSubstituteMetaDataForIndexB()
     {
         Map<Object, Object> metaData = new HashMap<>();
         metaData.put( 11, "Twelve" );
@@ -286,19 +286,19 @@ public class GridTest
     }
 
     @Test
-    public void testGetHeight()
+    void testGetHeight()
     {
         assertEquals( 4, gridA.getHeight() );
     }
 
     @Test
-    public void testGetWidth()
+    void testGetWidth()
     {
         assertEquals( 3, gridA.getWidth() );
     }
 
     @Test
-    public void testGetRow()
+    void testGetRow()
     {
         List<Object> rowA = gridA.getRow( 0 );
 
@@ -316,13 +316,13 @@ public class GridTest
     }
 
     @Test
-    public void testGetHeaders()
+    void testGetHeaders()
     {
         assertEquals( 3, gridA.getHeaders().size() );
     }
 
     @Test
-    public void tetsGetVisibleHeaders()
+    void tetsGetVisibleHeaders()
     {
         assertEquals( 2, gridA.getVisibleHeaders().size() );
         assertTrue( gridA.getVisibleHeaders().contains( headerA ) );
@@ -330,14 +330,14 @@ public class GridTest
     }
 
     @Test
-    public void testGetRows()
+    void testGetRows()
     {
         assertEquals( 4, gridA.getRows().size() );
         assertEquals( 3, gridA.getWidth() );
     }
 
     @Test
-    public void testGetGetVisibleRows()
+    void testGetGetVisibleRows()
     {
         assertEquals( 4, gridA.getVisibleRows().size() );
         assertEquals( 2, gridA.getVisibleRows().get( 0 ).size() );
@@ -347,7 +347,7 @@ public class GridTest
     }
 
     @Test
-    public void testGetColumn()
+    void testGetColumn()
     {
         List<Object> column1 = gridA.getColumn( 1 );
 
@@ -367,7 +367,7 @@ public class GridTest
     }
 
     @Test
-    public void testAddColumn()
+    void testAddColumn()
     {
         List<Object> columnValues = new ArrayList<>();
         columnValues.add( 14 );
@@ -395,7 +395,7 @@ public class GridTest
     }
 
     @Test
-    public void testAddColumnAtIndex()
+    void testAddColumnAtIndex()
     {
         List<Object> columnValues = new ArrayList<>();
         columnValues.add( 14 );
@@ -431,7 +431,7 @@ public class GridTest
     }
 
     @Test
-    public void testRemoveColumn()
+    void testRemoveColumn()
     {
         assertEquals( 3, gridA.getWidth() );
 
@@ -441,7 +441,7 @@ public class GridTest
     }
 
     @Test
-    public void testRemoveColumnByHeader()
+    void testRemoveColumnByHeader()
     {
         assertEquals( 3, gridA.getWidth() );
 
@@ -451,7 +451,7 @@ public class GridTest
     }
 
     @Test
-    public void testRemoveCurrentWriteRow()
+    void testRemoveCurrentWriteRow()
     {
         assertEquals( 4, gridA.getRows().size() );
 
@@ -475,7 +475,7 @@ public class GridTest
     }
 
     @Test
-    public void testLimit()
+    void testLimit()
     {
         assertEquals( 4, gridA.getRows().size() );
 
@@ -495,7 +495,7 @@ public class GridTest
     }
 
     @Test
-    public void testLimitShortList()
+    void testLimitShortList()
     {
         assertEquals( 4, gridA.getRows().size() );
 
@@ -509,7 +509,7 @@ public class GridTest
     }
 
     @Test
-    public void testLimits()
+    void testLimits()
     {
         assertEquals( 4, gridA.getRows().size() );
 
@@ -525,7 +525,7 @@ public class GridTest
     }
 
     @Test
-    public void testSortA()
+    void testSortA()
     {
         Grid grid = new ListGrid();
 
@@ -546,7 +546,7 @@ public class GridTest
     }
 
     @Test
-    public void testSortB()
+    void testSortB()
     {
         Grid grid = new ListGrid();
 
@@ -567,7 +567,7 @@ public class GridTest
     }
 
     @Test
-    public void testSortC()
+    void testSortC()
     {
         Grid grid = new ListGrid();
 
@@ -588,7 +588,7 @@ public class GridTest
     }
 
     @Test
-    public void testSortD()
+    void testSortD()
     {
         Grid grid = new ListGrid();
 
@@ -621,7 +621,7 @@ public class GridTest
     }
 
     @Test
-    public void testSortE()
+    void testSortE()
     {
         Grid grid = new ListGrid();
 
@@ -642,7 +642,7 @@ public class GridTest
     }
 
     @Test
-    public void testSortF()
+    void testSortF()
     {
         Grid grid = new ListGrid();
 
@@ -663,7 +663,7 @@ public class GridTest
     }
 
     @Test
-    public void testGridRowComparator()
+    void testGridRowComparator()
     {
         List<List<Object>> lists = new ArrayList<>();
         List<Object> l1 = getList( "b", "b", 50 );
@@ -682,7 +682,7 @@ public class GridTest
     }
 
     @Test
-    public void testAddCumulativeColumn()
+    void testAddCumulativeColumn()
     {
         gridA = new ListGrid();
 
@@ -707,7 +707,7 @@ public class GridTest
     }
 
     @Test
-    public void testGetMetaColumnIndexes()
+    void testGetMetaColumnIndexes()
     {
         List<Integer> expected = new ArrayList<>();
         expected.add( 0 );
@@ -717,7 +717,7 @@ public class GridTest
     }
 
     @Test
-    public void testGetUniqueValues()
+    void testGetUniqueValues()
     {
         gridA.addRow();
         gridA.addValue( 11 );
@@ -734,7 +734,7 @@ public class GridTest
     }
 
     @Test
-    public void testGetAsMap()
+    void testGetAsMap()
     {
         Map<String, Integer> map = gridA.getAsMap( 2, "-" );
 
@@ -746,7 +746,7 @@ public class GridTest
     }
 
     @Test
-    public void testAddValuesAsList()
+    void testAddValuesAsList()
     {
         Grid grid = new ListGrid();
 
