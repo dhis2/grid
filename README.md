@@ -10,7 +10,7 @@ Java 17 is required.
 
 ## Maven
 
-You can use Grid with Maven:
+You can use Grid with [Maven](https://central.sonatype.com/artifact/org.hisp/grid):
 
 ```xml
 <dependency>
@@ -22,21 +22,21 @@ You can use Grid with Maven:
 
 ## Get started
 
-Create a grid and add headers and rows:
+Create a grid and add headers and rows in fluent style:
 
 ```java
 Grid grid = new ListGrid()
-    .setTitle( "Clients" )
-    .addHeader(new GridHeader("Name", "name"))
-    .addHeader(new GridHeader("Email", "email"))
-    .addHeader(new GridHeader("Phone", "phone"));
+  .setTitle("Clients")
+  .addHeader(new GridHeader("Name", "name"))
+  .addHeader(new GridHeader("Email", "email"))
+  .addHeader(new GridHeader("Phone", "phone"));
 
 for (Person person : people)
 {
-    grid.addRow()
-        .addValue(person.getName())
-        .addValue(person.getEmail())
-        .addValue(person.getPhone());
+  grid.addRow()
+    .addValue(person.getName())
+    .addValue(person.getEmail())
+    .addValue(person.getPhone());
 }
 ```
 
@@ -44,6 +44,8 @@ Render to CSV (`Writer` retrieved e.g. from `HttpServletResponse`):
 
 ```java
 Writer writer = response.getWriter();
+response.setContentType("text/csv");
+
 GridUtils.toCsv(grid, writer);
 ```
 
@@ -51,5 +53,7 @@ Render to HTML:
 
 ```java
 Writer writer = reponse.getWriter();
+response.setContentType("text/html");
+
 GridUtils.toHtml(grid, writer);
 ```
