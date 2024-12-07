@@ -36,12 +36,12 @@ import org.hisp.grid.Grid;
  * Interface for writing a {@link Grid} in various formats.
  */
 public interface GridWriter {
-    /**
-     * Writes the given grid using the given writer.
-     * 
-     * @param grid the {@link Grid}.
-     * @param writer the {@link Writer}.
-     * @throws IOException if a writing error occurred.
-     */
+  /**
+   * Writes the given grid using the given writer.
+   * 
+   * @param grid the {@link Grid}.
+   * @param writer the {@link Writer}.
+   * @throws IOException if a writing error occurred.
+   */
   void write(Grid grid, Writer writer) throws IOException;
 }
