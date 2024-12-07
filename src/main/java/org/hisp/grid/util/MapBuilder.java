@@ -30,6 +30,9 @@ package org.hisp.grid.util;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Utility class for building maps.
+ */
 public class MapBuilder<K, V> {
   private final Map<K, V> map;
 

@@ -37,6 +37,9 @@ import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
 import org.owasp.encoder.Encode;
 
+/**
+ * {@link GridWriter} implementation for HTML format.
+ */
 public class HtmlGridWriter implements GridWriter {
 
   @Override

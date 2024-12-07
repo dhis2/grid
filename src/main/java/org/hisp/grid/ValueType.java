@@ -29,16 +29,52 @@ package org.hisp.grid;
 
 /** Value type enumeration. */
 public enum ValueType {
+  /**
+   * 2 byte small integer.
+   */
   SMALLINT,
+  /**
+   * 4 byte integer.
+   */
   INTEGER,
+  /**
+   * 8 byte big integer.
+   */
   BIGINT,
+  /**
+   * Numeric / decimal value.
+   */
   NUMERIC,
+  /**
+   * 4 byte floating point value.
+   */
   REAL,
+  /**
+   * 8 byte floating point value.
+   */
   DOUBLE,
+  /**
+   * Boolean value.
+   */
   BOOLEAN,
+  /**
+   * Character value.
+   */
   CHAR,
+  /**
+   * Text value.
+   */
   TEXT,
+  /**
+   * Date.
+   */
   DATE,
+  /**
+   * Timestamp.
+   */
   TIMESTAMP,
+  /**
+   * Timestamp with timezone.
+   */
   TIMESTAMPTZ;
 }
