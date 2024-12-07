@@ -32,9 +32,9 @@ import java.io.Writer;
 import java.util.List;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.StringEscapeUtils;
 import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
+import org.owasp.encoder.Encode;
 
 public class HtmlGridWriter implements GridWriter {
 
@@ -49,31 +49,33 @@ public class HtmlGridWriter implements GridWriter {
         <!DOCTYPE html>
         <html>
         <head>
+        <meta charset="UTF-8">
+        <title>%s</title>
         %s
         </head>
         <body>
         %s
         </body>
-        </html""", getHtmlStyle(), getHtmlTable(grid));
+        </html""", 
+          escape(grid.getTitle()), 
+          getHtmlStyle(grid), 
+          getHtmlTable(grid));
   }
 
-  private String getHtmlStyle() {
+  private String getHtmlStyle(Grid grid) {
     return """
         <style type="text/css">
         .gridDiv {
           font-family: sans-serif, arial;
         }
-
         table.gridTable {
           border-collapse: collapse;
           font-size: 11pt;
         }
-
         .gridTable th, .gridTable td {
           padding: 8px 4px 7px 4px;
           border: 1px solid #e7e7e7;
         }
-
         .gridTable th {
           background-color: #f3f3f3;
           font-weight: bold;
@@ -94,11 +96,11 @@ public class HtmlGridWriter implements GridWriter {
             <thead>
             <tr>
             """,
-            escapeHtml(grid.getTitle()),
-            escapeHtml(grid.getSubtitle())));
+            escape(grid.getTitle()),
+            escape(grid.getSubtitle())));
 
     for (GridHeader header : grid.getVisibleHeaders()) {
-      b.append("<th>").append(escapeHtml(header.getColumn())).append("</th>");
+      b.append("<th>").append(escape(header.getColumn())).append("</th>");
     }
 
     b.append("""
@@ -109,7 +111,7 @@ public class HtmlGridWriter implements GridWriter {
     for (List<Object> row : grid.getVisibleRows()) {
       b.append("<tr>");
       for (Object value : row) {
-        b.append("<td>").append(escapeHtml(value)).append("</td>");
+        b.append("<td>").append(escape(value)).append("</td>");
       }
       b.append("</tr>");
     }
@@ -120,8 +122,8 @@ public class HtmlGridWriter implements GridWriter {
         </div>""").toString();
   }
 
-  private String escapeHtml(Object input) {
+  private String escape(Object input) {
     String value = String.valueOf(ObjectUtils.firstNonNull(input, StringUtils.EMPTY));
-    return StringEscapeUtils.escapeHtml4(StringUtils.trimToEmpty(value));
+    return Encode.forHtml(StringUtils.trimToEmpty(value));
   }
 }
