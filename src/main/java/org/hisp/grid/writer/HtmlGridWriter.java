@@ -30,6 +30,7 @@ package org.hisp.grid.writer;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
+
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hisp.grid.Grid;
@@ -43,6 +44,12 @@ public class HtmlGridWriter implements GridWriter {
     writer.write(getHtmlDocument(grid));
   }
 
+  /**
+   * Returns a HTML document.
+   * 
+   * @param grid the {@link Grid}.
+   * @return a HTML document.
+   */
   private String getHtmlDocument(Grid grid) {
     return String.format(
         """
@@ -62,6 +69,12 @@ public class HtmlGridWriter implements GridWriter {
           getHtmlTable(grid));
   }
 
+  /**
+   * Returns a HTML style section.
+   * 
+   * @param grid the {@link Grid}.
+   * @return a HTML style section.
+   */
   private String getHtmlStyle(Grid grid) {
     return """
         <style type="text/css">
@@ -83,6 +96,12 @@ public class HtmlGridWriter implements GridWriter {
         </style>""";
   }
 
+  /**
+   * Returns a HTML table section.
+   * 
+   * @param grid the {@link Grid}.
+   * @return a HTML table section.
+   */
   private String getHtmlTable(Grid grid) {
     StringBuilder b = new StringBuilder();
 
@@ -122,6 +141,12 @@ public class HtmlGridWriter implements GridWriter {
         </div>""").toString();
   }
 
+  /**
+   * Returns the given input object as an HTML-escaped string value.
+   * 
+   * @param input the input object.
+   * @return a string value.
+   */
   private String escape(Object input) {
     String value = String.valueOf(ObjectUtils.firstNonNull(input, StringUtils.EMPTY));
     return Encode.forHtml(StringUtils.trimToEmpty(value));
