@@ -64,8 +64,7 @@ class GridUtilsTest {
   @Test
   void testToCsv() throws IOException {
     StringWriter writer = new StringWriter();
-    CsvWriteOptions options =
-        CsvWriteOptions.standard().withDelimiter(',').withForceQualifier(false);
+    CsvWriteOptions options = CsvWriteOptions.standard().withDelimiter(',').withForceQualifier();
 
     GridUtils.toCsv(grid, writer, options);
     String output = writer.toString();
