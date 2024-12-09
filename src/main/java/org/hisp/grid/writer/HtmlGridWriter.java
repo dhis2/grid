@@ -96,8 +96,10 @@ public class HtmlGridWriter implements GridWriter {
           font-size: 11pt;
         }
         .gridTable th, .gridTable td {
-          padding: 8px 4px 7px 4px;
+          padding: 8px;
           border: 1px solid #e7e7e7;
+          white-space-collapse: preserve;
+          text-wrap-mode: nowrap;
         }
         .gridTable th {
           background-color: #f3f3f3;
@@ -132,7 +134,7 @@ public class HtmlGridWriter implements GridWriter {
     }
 
     for (GridHeader header : grid.getVisibleHeaders()) {
-      b.append("<th>").append(escape(header.getColumn())).append("</th>");
+      b.append("<th>").append(escape(header.getName())).append("</th>");
     }
 
     b.append("""
