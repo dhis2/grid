@@ -30,16 +30,13 @@ package org.hisp.grid.writer;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
-
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
 import org.owasp.encoder.Encode;
 
-/**
- * {@link GridWriter} implementation for HTML format.
- */
+/** {@link GridWriter} implementation for HTML format. */
 public class HtmlGridWriter implements GridWriter {
 
   @Override
@@ -49,7 +46,7 @@ public class HtmlGridWriter implements GridWriter {
 
   /**
    * Returns a HTML document.
-   * 
+   *
    * @param grid the {@link Grid}.
    * @return a HTML document.
    */
@@ -66,15 +63,13 @@ public class HtmlGridWriter implements GridWriter {
         <body>
         %s
         </body>
-        </html""", 
-          escape(grid.getTitle()), 
-          getHtmlStyle(grid), 
-          getHtmlTable(grid));
+        </html""",
+        escape(grid.getTitle()), getHtmlStyle(grid), getHtmlTable(grid));
   }
 
   /**
    * Returns a HTML style section.
-   * 
+   *
    * @param grid the {@link Grid}.
    * @return a HTML style section.
    */
@@ -101,7 +96,7 @@ public class HtmlGridWriter implements GridWriter {
 
   /**
    * Returns a HTML table section.
-   * 
+   *
    * @param grid the {@link Grid}.
    * @return a HTML table section.
    */
@@ -118,8 +113,7 @@ public class HtmlGridWriter implements GridWriter {
             <thead>
             <tr>
             """,
-            escape(grid.getTitle()),
-            escape(grid.getSubtitle())));
+            escape(grid.getTitle()), escape(grid.getSubtitle())));
 
     for (GridHeader header : grid.getVisibleHeaders()) {
       b.append("<th>").append(escape(header.getColumn())).append("</th>");
@@ -146,7 +140,7 @@ public class HtmlGridWriter implements GridWriter {
 
   /**
    * Returns the given input object as an HTML-escaped string value.
-   * 
+   *
    * @param input the input object.
    * @return a string value.
    */

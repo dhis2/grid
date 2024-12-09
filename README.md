@@ -26,13 +26,12 @@ Create a grid and add headers and rows in fluent style:
 
 ```java
 Grid grid = new ListGrid()
-  .setTitle("Clients")
+  .setTitle("People")
   .addHeader(new GridHeader("Name", "name"))
   .addHeader(new GridHeader("Email", "email"))
   .addHeader(new GridHeader("Phone", "phone"));
 
-for (Person person : people)
-{
+for (Person person : people) {
   grid.addRow()
     .addValue(person.getName())
     .addValue(person.getEmail())

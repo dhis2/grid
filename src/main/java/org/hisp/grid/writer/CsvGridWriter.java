@@ -27,21 +27,17 @@
  */
 package org.hisp.grid.writer;
 
+import com.csvreader.CsvWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
 import org.hisp.grid.csv.CsvWriteOptions;
 
-import com.csvreader.CsvWriter;
-
-/**
- * {@link GridWriter} implementation for CSV format.
- */
+/** {@link GridWriter} implementation for CSV format. */
 public class CsvGridWriter implements GridWriter {
   private final CsvWriteOptions options;
 
@@ -78,7 +74,7 @@ public class CsvGridWriter implements GridWriter {
 
   /**
    * Returns a CSV writer based on the given writer and options.
-   * 
+   *
    * @param writer the {@link Writer}.
    * @param options the {@link CsvWriteOptions}.
    * @return a {@link CsvWriter}.

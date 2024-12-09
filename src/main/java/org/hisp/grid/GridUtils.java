@@ -37,7 +37,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
 import org.hisp.grid.csv.CsvWriteOptions;
 import org.hisp.grid.util.MapBuilder;
 import org.hisp.grid.writer.CsvGridWriter;
@@ -70,9 +69,8 @@ public class GridUtils {
           .put(Types.TIME_WITH_TIMEZONE, ValueType.TIMESTAMPTZ)
           .put(Types.TIMESTAMP_WITH_TIMEZONE, ValueType.TIMESTAMPTZ)
           .build();
-  
-  private GridUtils() {
-  }
+
+  private GridUtils() {}
 
   /**
    * Creates a {@link Grid} based on the given SQL {@link ResultSet}.

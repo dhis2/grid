@@ -27,6 +27,9 @@
  */
 package org.hisp.grid;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -39,9 +42,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import org.hisp.grid.serializer.JacksonRowDataSerializer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Implementation of the {@link Grid} interface using {@link ArrayList}. This implementation is
@@ -393,9 +393,10 @@ public class ListGrid implements Grid {
     int currentColumnIndex = 0;
 
     if (grid.size() != columnValues.size()) {
-      throw new IllegalStateException(String.format(
-          "Number of column values (%d) is not equal to number of rows (%d)", 
-          columnValues.size(), grid.size()));
+      throw new IllegalStateException(
+          String.format(
+              "Number of column values (%d) is not equal to number of rows (%d)",
+              columnValues.size(), grid.size()));
     }
 
     for (int i = 0; i < grid.size(); i++) {
@@ -413,9 +414,10 @@ public class ListGrid implements Grid {
     int currentColumnIndex = 0;
 
     if (grid.size() != columnValues.size()) {
-      throw new IllegalStateException(String.format(
-          "Number of column values (%d) is not equal to number of rows (%d)", 
-          columnValues.size(), grid.size()));
+      throw new IllegalStateException(
+          String.format(
+              "Number of column values (%d) is not equal to number of rows (%d)",
+              columnValues.size(), grid.size()));
     }
 
     for (int i = 0; i < grid.size(); i++) {
@@ -726,9 +728,10 @@ public class ListGrid implements Grid {
 
     for (List<Object> row : grid) {
       if (rowLength != null && rowLength != row.size()) {
-        throw new IllegalStateException(String.format(
-            "Grid rows do not have the same number of cells, previous: %d, this: %d, at row: %d",
-            rowLength, row.size(), rowPos));
+        throw new IllegalStateException(
+            String.format(
+                "Grid rows do not have the same number of cells, previous: %d, this: %d, at row: %d",
+                rowLength, row.size(), rowPos));
       }
 
       rowPos++;

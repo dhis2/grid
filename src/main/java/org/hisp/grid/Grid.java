@@ -31,7 +31,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/** Two-dimensional grid structure with a set of methods for manipulation. */
+/**
+ * Two-dimensional grid structure with a set of methods for manipulation.
+ *
+ * <p>Use the static methods of {@link GridUtils} to render to various formats.
+ *
+ * <p>An example of basic usage is found below.
+ *
+ * <p>
+ *
+ * <pre>{@code
+ * Grid grid = new ListGrid()
+ *   .setTitle("People")
+ *   .addHeader(new GridHeader("Name", "name"))
+ *   .addHeader(new GridHeader("Email", "email"));
+ *
+ * for (Person person : people) {
+ *   grid.addRow()
+ *     .addValue(person.getName())
+ *     .addValue(person.getEmail());
+ * }
+ * }</pre>
+ */
 public interface Grid {
   /**
    * Returns the grid title.
