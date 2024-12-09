@@ -63,8 +63,8 @@ public class CsvWriteOptions {
     return forceQualifier;
   }
 
-  public CsvWriteOptions withForceQualifier(boolean forceQualifier) {
-    this.forceQualifier = forceQualifier;
+  public CsvWriteOptions withForceQualifier() {
+    this.forceQualifier = true;
     return this;
   }
 }

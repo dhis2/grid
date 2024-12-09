@@ -4,7 +4,7 @@
 
   <groupId>org.hisp</groupId>
   <artifactId>grid</artifactId>
-  <version>1.2.6-SNAPSHOT</version>
+  <version>1.2.6</version>
   <packaging>jar</packaging>
   <name>Grid</name>
 

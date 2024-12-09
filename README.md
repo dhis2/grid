@@ -48,6 +48,16 @@ response.setContentType("text/csv");
 GridUtils.toCsv(grid, writer);
 ```
 
+Render to CSV with options:
+
+```java
+CsvWriteOptions options = CsvWriteOptions.standard()
+  .withDelimiter(',')
+  .withForceQualifier();
+
+GridUtils.toCsv(grid, writer, options);
+```
+
 Render to HTML:
 
 ```java
@@ -55,4 +65,13 @@ Writer writer = reponse.getWriter();
 response.setContentType("text/html");
 
 GridUtils.toHtml(grid, writer);
+```
+
+Render to HTML with options:
+
+```java
+HtmlWriteOptions options = HtmlWriteOptions.standard()
+  .withLineNumbers();
+
+GridUtils.toHtml(grid, writer, options);
 ```
