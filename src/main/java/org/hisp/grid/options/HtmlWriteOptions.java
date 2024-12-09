@@ -33,16 +33,25 @@ public class HtmlWriteOptions {
   private boolean lineNumbers;
 
   /** Constructor. */
-  public HtmlWriteOptions() {
+  private HtmlWriteOptions() {
     this.lineNumbers = false;
+  }
+
+  /**
+   * Returns a new instance.
+   *
+   * @return a {@link HtmlWriteOptions}.
+   */
+  public static HtmlWriteOptions standard() {
+    return new HtmlWriteOptions();
   }
 
   public boolean isLineNumbers() {
     return lineNumbers;
   }
 
-  public HtmlWriteOptions setLineNumbers(boolean lineNumbers) {
-    this.lineNumbers = lineNumbers;
+  public HtmlWriteOptions withLineNumbers() {
+    this.lineNumbers = true;
     return this;
   }
 }

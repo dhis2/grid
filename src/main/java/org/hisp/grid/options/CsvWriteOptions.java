@@ -36,16 +36,25 @@ public class CsvWriteOptions {
   private boolean forceQualifier;
 
   /** Constructor. */
-  public CsvWriteOptions() {
+  private CsvWriteOptions() {
     delimiter = ',';
     forceQualifier = false;
+  }
+
+  /**
+   * Returns a new instance.
+   *
+   * @return a {@link CsvWriteOptions}.
+   */
+  public static CsvWriteOptions standard() {
+    return new CsvWriteOptions();
   }
 
   public char getDelimiter() {
     return delimiter;
   }
 
-  public CsvWriteOptions setDelimiter(char delimiter) {
+  public CsvWriteOptions withDelimiter(char delimiter) {
     this.delimiter = delimiter;
     return this;
   }
@@ -54,7 +63,7 @@ public class CsvWriteOptions {
     return forceQualifier;
   }
 
-  public CsvWriteOptions setForceQualifier(boolean forceQualifier) {
+  public CsvWriteOptions withForceQualifier(boolean forceQualifier) {
     this.forceQualifier = forceQualifier;
     return this;
   }

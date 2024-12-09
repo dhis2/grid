@@ -94,7 +94,7 @@ public class GridUtils {
    * @throws IOException for errors during rendering.
    */
   public static void toCsv(Grid grid, Writer writer) throws IOException {
-    toCsv(grid, writer, new CsvWriteOptions());
+    toCsv(grid, writer, CsvWriteOptions.standard());
   }
 
   /**
@@ -120,7 +120,7 @@ public class GridUtils {
    * @throws IOException for errors during rendering.
    */
   public static void toHtml(Grid grid, Writer writer) throws IOException {
-    toHtml(grid, writer, new HtmlWriteOptions());
+    toHtml(grid, writer, HtmlWriteOptions.standard());
   }
 
   /**

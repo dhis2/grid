@@ -64,7 +64,8 @@ class GridUtilsTest {
   @Test
   void testToCsv() throws IOException {
     StringWriter writer = new StringWriter();
-    CsvWriteOptions options = new CsvWriteOptions().setDelimiter(',').setForceQualifier(false);
+    CsvWriteOptions options =
+        CsvWriteOptions.standard().withDelimiter(',').withForceQualifier(false);
 
     GridUtils.toCsv(grid, writer, options);
     String output = writer.toString();
@@ -95,7 +96,7 @@ class GridUtilsTest {
   @Test
   void testToHtmlWithLineNumber() throws IOException {
     StringWriter writer = new StringWriter();
-    HtmlWriteOptions options = new HtmlWriteOptions().setLineNumbers(false);
+    HtmlWriteOptions options = HtmlWriteOptions.standard().withLineNumbers();
 
     GridUtils.toHtml(grid, writer, options);
     String output = writer.toString();
