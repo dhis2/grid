@@ -34,10 +34,22 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
+import org.hisp.grid.options.HtmlWriteOptions;
 import org.owasp.encoder.Encode;
 
 /** {@link GridWriter} implementation for HTML format. */
 public class HtmlGridWriter implements GridWriter {
+  /** HTML writing options. */
+  private final HtmlWriteOptions options;
+
+  /**
+   * Constructor.
+   *
+   * @param options the {@link HtmlWriteOptions}.
+   */
+  public HtmlGridWriter(HtmlWriteOptions options) {
+    this.options = options;
+  }
 
   @Override
   public void write(Grid grid, Writer writer) throws IOException {
@@ -115,6 +127,10 @@ public class HtmlGridWriter implements GridWriter {
             """,
             escape(grid.getTitle()), escape(grid.getSubtitle())));
 
+    if (options.isLineNumbers()) {
+      b.append("<th></th>");
+    }
+
     for (GridHeader header : grid.getVisibleHeaders()) {
       b.append("<th>").append(escape(header.getColumn())).append("</th>");
     }
@@ -124,8 +140,15 @@ public class HtmlGridWriter implements GridWriter {
         </thead>
         <tbody>""");
 
+    int r = 0;
+
     for (List<Object> row : grid.getVisibleRows()) {
       b.append("<tr>");
+
+      if (options.isLineNumbers()) {
+        b.append("<td>").append(++r).append("</td>");
+      }
+
       for (Object value : row) {
         b.append("<td>").append(escape(value)).append("</td>");
       }

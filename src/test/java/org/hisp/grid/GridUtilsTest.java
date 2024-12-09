@@ -32,7 +32,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import org.hisp.grid.csv.CsvWriteOptions;
+import org.hisp.grid.options.CsvWriteOptions;
+import org.hisp.grid.options.HtmlWriteOptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -77,6 +78,26 @@ class GridUtilsTest {
     StringWriter writer = new StringWriter();
 
     GridUtils.toHtml(grid, writer);
+    String output = writer.toString();
+
+    assertNotNull(output);
+    assertTrue(
+        output.startsWith(
+            """
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <title>Immunization</title>
+        <style type="text/css">"""));
+  }
+
+  @Test
+  void testToHtmlWithLineNumber() throws IOException {
+    StringWriter writer = new StringWriter();
+    HtmlWriteOptions options = new HtmlWriteOptions().setLineNumbers(false);
+
+    GridUtils.toHtml(grid, writer, options);
     String output = writer.toString();
 
     assertNotNull(output);
