@@ -38,8 +38,6 @@ import java.util.Set;
  *
  * <p>An example of basic usage is found below.
  *
- * <p>
- *
  * <pre>{@code
  * Grid grid = new ListGrid()
  *   .setTitle("People")
