@@ -35,13 +35,14 @@ public class CsvWriteOptions {
   /** Whether to force a qualifier. */
   private boolean forceQualifier;
 
-  public char getDelimiter() {
-    return delimiter;
-  }
-
+  /** Constructor. */
   public CsvWriteOptions() {
     delimiter = ',';
     forceQualifier = false;
+  }
+
+  public char getDelimiter() {
+    return delimiter;
   }
 
   public CsvWriteOptions setDelimiter(char delimiter) {

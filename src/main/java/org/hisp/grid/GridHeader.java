@@ -31,23 +31,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Grid header. */
 public class GridHeader {
+  /** Header name. */
   private String name;
 
+  /** Header column. */
   private String column;
 
+  /** Header value type. */
   private ValueType valueType;
 
+  /** Whether column is hidden in rendering. */
   private boolean hidden;
 
+  /** Whether column is representing metadata. */
   private boolean meta;
 
   // -------------------------------------------------------------------------
   // Constructors
   // -------------------------------------------------------------------------
 
+  /** Constructor. */
   public GridHeader() {}
 
   /**
+   * Constructor.
+   *
    * @param name name
    */
   public GridHeader(String name) {
@@ -59,6 +67,8 @@ public class GridHeader {
   }
 
   /**
+   * Constructor.
+   *
    * @param name name
    * @param column column
    */
@@ -68,6 +78,8 @@ public class GridHeader {
   }
 
   /**
+   * Constructor.
+   *
    * @param name name
    * @param hidden hidden
    * @param meta meta
@@ -79,6 +91,8 @@ public class GridHeader {
   }
 
   /**
+   * Constructor.
+   *
    * @param name name
    * @param column column
    * @param valueType valueType

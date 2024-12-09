@@ -39,8 +39,14 @@ import org.hisp.grid.csv.CsvWriteOptions;
 
 /** {@link GridWriter} implementation for CSV format. */
 public class CsvGridWriter implements GridWriter {
+  /** CSV writing options. */
   private final CsvWriteOptions options;
 
+  /**
+   * Constructor.
+   *
+   * @param options the {@link CsvWriteOptions}.
+   */
   public CsvGridWriter(CsvWriteOptions options) {
     this.options = options;
   }
