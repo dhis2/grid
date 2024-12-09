@@ -64,13 +64,34 @@ class GridUtilsTest {
   @Test
   void testToCsv() throws IOException {
     StringWriter writer = new StringWriter();
-    CsvWriteOptions options = CsvWriteOptions.standard().withDelimiter(',').withForceQualifier();
+
+    GridUtils.toCsv(grid, writer);
+    String output = writer.toString();
+
+    assertNotNull(output);
+    assertTrue(
+        output.startsWith(
+            """
+        Name,Period,Organisation unit,Value
+        Penta1 doses given,Apr to Jun 2019,Bombali,5128.0"""),
+        output);
+  }
+
+  @Test
+  void testToCsvWithOptions() throws IOException {
+    StringWriter writer = new StringWriter();
+    CsvWriteOptions options = CsvWriteOptions.standard().withDelimiter(';').withForceQualifier();
 
     GridUtils.toCsv(grid, writer, options);
     String output = writer.toString();
 
     assertNotNull(output);
-    assertTrue(output.startsWith("Name,Period,Organisation unit,Value"));
+    assertTrue(
+        output.startsWith(
+            """
+        "Name";"Period";"Organisation unit";"Value"
+        "Penta1 doses given";"Apr to Jun 2019";"Bombali";"5128.0\""""),
+        output);
   }
 
   @Test
@@ -89,7 +110,8 @@ class GridUtilsTest {
         <head>
         <meta charset="UTF-8">
         <title>Immunization</title>
-        <style type="text/css">"""));
+        <style type="text/css">"""),
+        output);
   }
 
   @Test
@@ -109,6 +131,7 @@ class GridUtilsTest {
         <head>
         <meta charset="UTF-8">
         <title>Immunization</title>
-        <style type="text/css">"""));
+        <style type="text/css">"""),
+        output);
   }
 }

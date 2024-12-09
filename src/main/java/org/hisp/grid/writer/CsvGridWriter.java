@@ -27,12 +27,14 @@
  */
 package org.hisp.grid.writer;
 
+import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import com.csvreader.CsvWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
 import org.hisp.grid.options.CsvWriteOptions;
@@ -70,8 +72,7 @@ public class CsvGridWriter implements GridWriter {
 
       while (columns.hasNext()) {
         Object value = columns.next();
-
-        csvWriter.write(value != null ? String.valueOf(value) : StringUtils.EMPTY);
+        csvWriter.write(String.valueOf(firstNonNull(value, EMPTY)));
       }
 
       csvWriter.endRecord();
