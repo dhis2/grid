@@ -41,7 +41,8 @@ public class HtmlWriteOptions {
     return lineNumbers;
   }
 
-  public void setLineNumbers(boolean lineNumbers) {
+  public HtmlWriteOptions setLineNumbers(boolean lineNumbers) {
     this.lineNumbers = lineNumbers;
+    return this;
   }
 }

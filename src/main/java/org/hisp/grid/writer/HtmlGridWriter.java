@@ -127,6 +127,10 @@ public class HtmlGridWriter implements GridWriter {
             """,
             escape(grid.getTitle()), escape(grid.getSubtitle())));
 
+    if (options.isLineNumbers()) {
+      b.append("<th></th>");
+    }
+
     for (GridHeader header : grid.getVisibleHeaders()) {
       b.append("<th>").append(escape(header.getColumn())).append("</th>");
     }
@@ -136,8 +140,15 @@ public class HtmlGridWriter implements GridWriter {
         </thead>
         <tbody>""");
 
+    int r = 0;
+
     for (List<Object> row : grid.getVisibleRows()) {
       b.append("<tr>");
+
+      if (options.isLineNumbers()) {
+        b.append("<td>").append(++r).append("</td>");
+      }
+
       for (Object value : row) {
         b.append("<td>").append(escape(value)).append("</td>");
       }
