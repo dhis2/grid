@@ -35,7 +35,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
-import org.hisp.grid.csv.CsvWriteOptions;
+import org.hisp.grid.options.CsvWriteOptions;
 
 /** {@link GridWriter} implementation for CSV format. */
 public class CsvGridWriter implements GridWriter {

@@ -34,10 +34,22 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hisp.grid.Grid;
 import org.hisp.grid.GridHeader;
+import org.hisp.grid.options.HtmlWriteOptions;
 import org.owasp.encoder.Encode;
 
 /** {@link GridWriter} implementation for HTML format. */
 public class HtmlGridWriter implements GridWriter {
+  /** HTML writing options. */
+  private final HtmlWriteOptions options;
+
+  /**
+   * Constructor.
+   *
+   * @param options the {@link HtmlWriteOptions}.
+   */
+  public HtmlGridWriter(HtmlWriteOptions options) {
+    this.options = options;
+  }
 
   @Override
   public void write(Grid grid, Writer writer) throws IOException {

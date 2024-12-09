@@ -37,7 +37,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import org.hisp.grid.csv.CsvWriteOptions;
+import org.hisp.grid.options.CsvWriteOptions;
+import org.hisp.grid.options.HtmlWriteOptions;
 import org.hisp.grid.util.MapBuilder;
 import org.hisp.grid.writer.CsvGridWriter;
 import org.hisp.grid.writer.HtmlGridWriter;
@@ -119,11 +120,22 @@ public class GridUtils {
    * @throws IOException for errors during rendering.
    */
   public static void toHtml(Grid grid, Writer writer) throws IOException {
+    toHtml(grid, writer, new HtmlWriteOptions());
+  }
+
+  /**
+   * Renders the given {@link Grid} in HTML format. Writes the content to the given {@link Writer}.
+   *
+   * @param grid the grid.
+   * @param writer the writer.
+   * @throws IOException for errors during rendering.
+   */
+  public static void toHtml(Grid grid, Writer writer, HtmlWriteOptions options) throws IOException {
     if (grid == null) {
       return;
     }
 
-    new HtmlGridWriter().write(grid, writer);
+    new HtmlGridWriter(options).write(grid, writer);
   }
 
   /**
