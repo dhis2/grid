@@ -105,6 +105,9 @@ public class HtmlGridWriter implements GridWriter {
           background-color: #f3f3f3;
           font-weight: bold;
         }
+        .gridTable th:hover {
+          background-color: #f6f66f;
+        }
         </style>""";
   }
 
