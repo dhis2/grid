@@ -29,6 +29,7 @@ package org.hisp.grid;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import org.hisp.grid.options.CsvWriteOptions;
@@ -124,7 +125,7 @@ class GridUtilsTest {
 
     GridUtils.toHtml(grid, writer, options);
     String output = writer.toString();
-    
+
     System.out.println(output);
 
     assertNotNull(output);

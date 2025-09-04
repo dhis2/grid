@@ -39,11 +39,9 @@ import org.owasp.encoder.Encode;
 
 /** {@link GridWriter} implementation for HTML format. */
 public class HtmlGridWriter implements GridWriter {
-  /**
-   * Line separator.
-   */
+  /** Line separator. */
   private static final String LS = "\n";
-  
+
   /** HTML writing options. */
   private final HtmlWriteOptions options;
 
@@ -91,8 +89,7 @@ public class HtmlGridWriter implements GridWriter {
    * @return a HTML style section.
    */
   private String getHtmlStyle(Grid grid) {
-    return 
-        """
+    return """
         <style type="text/css">
         .gridDiv {
           font-family: sans-serif, arial;
@@ -166,8 +163,7 @@ public class HtmlGridWriter implements GridWriter {
       b.append("</tr>").append(LS);
     }
 
-    return b.append(
-        """
+    return b.append("""
         </tbody>
         </table>
         </div>""").toString();
