@@ -91,25 +91,34 @@ public class HtmlGridWriter implements GridWriter {
   private String getHtmlStyle(Grid grid) {
     return """
         <style type="text/css">
+        body {
+          font-family: arial, sans-serif;
+          background-color: #fff;
+        }
         .gridDiv {
-          font-family: sans-serif, arial;
+          margin: auto;
         }
         table.gridTable {
           border-collapse: collapse;
           font-size: 11pt;
         }
+        .gridTable {
+          border-collapse: collapse;
+        }
         .gridTable th, .gridTable td {
           padding: 8px;
+          text-align: left;
           border: 1px solid #e7e7e7;
           white-space-collapse: preserve;
           text-wrap-mode: nowrap;
         }
         .gridTable th {
-          background-color: #f3f3f3;
+          background-color: #f1f1f1;
+          color: #222;
           font-weight: bold;
         }
-        .gridTable th:hover {
-          background-color: #f6f66f;
+        .gridTable tbody tr:hover {
+          background-color: #f6f6f6;
         }
         </style>""";
   }
