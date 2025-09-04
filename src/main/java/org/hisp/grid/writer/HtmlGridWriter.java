@@ -39,6 +39,9 @@ import org.owasp.encoder.Encode;
 
 /** {@link GridWriter} implementation for HTML format. */
 public class HtmlGridWriter implements GridWriter {
+  /** Line separator. */
+  private static final String LS = "\n";
+
   /** HTML writing options. */
   private final HtmlWriteOptions options;
 
@@ -75,7 +78,7 @@ public class HtmlGridWriter implements GridWriter {
         <body>
         %s
         </body>
-        </html""",
+        </html>""",
         escape(grid.getTitle()), getHtmlStyle(grid), getHtmlTable(grid));
   }
 
@@ -128,8 +131,7 @@ public class HtmlGridWriter implements GridWriter {
             <h3>%s</h3>
             <table class="gridTable">
             <thead>
-            <tr>
-            """,
+            <tr>""",
             escape(grid.getTitle()), escape(grid.getSubtitle())));
 
     if (options.isLineNumbers()) {
@@ -143,7 +145,8 @@ public class HtmlGridWriter implements GridWriter {
     b.append("""
         </tr>
         </thead>
-        <tbody>""");
+        <tbody>
+        """);
 
     int r = 0;
 
@@ -157,7 +160,7 @@ public class HtmlGridWriter implements GridWriter {
       for (Object value : row) {
         b.append("<td>").append(escape(value)).append("</td>");
       }
-      b.append("</tr>");
+      b.append("</tr>").append(LS);
     }
 
     return b.append("""

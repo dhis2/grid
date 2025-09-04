@@ -72,8 +72,9 @@ class GridUtilsTest {
     assertTrue(
         output.startsWith(
             """
-        Name,Period,Organisation unit,Value
-        Penta1 doses given,Apr to Jun 2019,Bombali,5128.0"""),
+            Name,Period,Organisation unit,Value
+            Penta1 doses given,Apr to Jun 2019,Bombali,5128.0
+            """),
         output);
   }
 
@@ -89,8 +90,9 @@ class GridUtilsTest {
     assertTrue(
         output.startsWith(
             """
-        "Name";"Period";"Organisation unit";"Value"
-        "Penta1 doses given";"Apr to Jun 2019";"Bombali";"5128.0\""""),
+            "Name";"Period";"Organisation unit";"Value"
+            "Penta1 doses given";"Apr to Jun 2019";"Bombali";"5128.0"
+            """),
         output);
   }
 
@@ -105,13 +107,15 @@ class GridUtilsTest {
     assertTrue(
         output.startsWith(
             """
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <meta charset="UTF-8">
-        <title>Immunization</title>
-        <style type="text/css">"""),
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="UTF-8">
+            <title>Immunization</title>
+            <style type="text/css">
+            """),
         output);
+    assertTrue(output.endsWith("</html>"));
   }
 
   @Test
@@ -122,16 +126,20 @@ class GridUtilsTest {
     GridUtils.toHtml(grid, writer, options);
     String output = writer.toString();
 
+    System.out.println(output);
+
     assertNotNull(output);
     assertTrue(
         output.startsWith(
             """
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <meta charset="UTF-8">
-        <title>Immunization</title>
-        <style type="text/css">"""),
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="UTF-8">
+            <title>Immunization</title>
+            <style type="text/css">
+            """),
         output);
+    assertTrue(output.endsWith("</html>"));
   }
 }
