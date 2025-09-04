@@ -29,7 +29,6 @@ package org.hisp.grid;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import org.hisp.grid.options.CsvWriteOptions;
@@ -72,8 +71,8 @@ class GridUtilsTest {
     assertTrue(
         output.startsWith(
             """
-        Name,Period,Organisation unit,Value
-        Penta1 doses given,Apr to Jun 2019,Bombali,5128.0"""),
+            Name,Period,Organisation unit,Value
+            Penta1 doses given,Apr to Jun 2019,Bombali,5128.0"""),
         output);
   }
 
@@ -89,8 +88,8 @@ class GridUtilsTest {
     assertTrue(
         output.startsWith(
             """
-        "Name";"Period";"Organisation unit";"Value"
-        "Penta1 doses given";"Apr to Jun 2019";"Bombali";"5128.0\""""),
+            "Name";"Period";"Organisation unit";"Value"
+            "Penta1 doses given";"Apr to Jun 2019";"Bombali";"5128.0\""""),
         output);
   }
 
@@ -105,12 +104,13 @@ class GridUtilsTest {
     assertTrue(
         output.startsWith(
             """
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <meta charset="UTF-8">
-        <title>Immunization</title>
-        <style type="text/css">"""),
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="UTF-8">
+            <title>Immunization</title>
+            <style type="text/css">
+            """),
         output);
   }
 
@@ -126,12 +126,13 @@ class GridUtilsTest {
     assertTrue(
         output.startsWith(
             """
-        <!DOCTYPE html>
-        <html>
-        <head>
-        <meta charset="UTF-8">
-        <title>Immunization</title>
-        <style type="text/css">"""),
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="UTF-8">
+            <title>Immunization</title>
+            <style type="text/css">
+            """),
         output);
   }
 }
