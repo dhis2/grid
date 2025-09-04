@@ -72,7 +72,8 @@ class GridUtilsTest {
         output.startsWith(
             """
             Name,Period,Organisation unit,Value
-            Penta1 doses given,Apr to Jun 2019,Bombali,5128.0"""),
+            Penta1 doses given,Apr to Jun 2019,Bombali,5128.0
+            """),
         output);
   }
 
@@ -89,7 +90,8 @@ class GridUtilsTest {
         output.startsWith(
             """
             "Name";"Period";"Organisation unit";"Value"
-            "Penta1 doses given";"Apr to Jun 2019";"Bombali";"5128.0\""""),
+            "Penta1 doses given";"Apr to Jun 2019";"Bombali";"5128.0"
+            """),
         output);
   }
 
@@ -112,6 +114,7 @@ class GridUtilsTest {
             <style type="text/css">
             """),
         output);
+    assertTrue(output.endsWith("</html>"));
   }
 
   @Test
@@ -121,6 +124,8 @@ class GridUtilsTest {
 
     GridUtils.toHtml(grid, writer, options);
     String output = writer.toString();
+    
+    System.out.println(output);
 
     assertNotNull(output);
     assertTrue(
@@ -134,5 +139,6 @@ class GridUtilsTest {
             <style type="text/css">
             """),
         output);
+    assertTrue(output.endsWith("</html>"));
   }
 }
