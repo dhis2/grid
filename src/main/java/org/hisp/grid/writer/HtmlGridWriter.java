@@ -94,6 +94,8 @@ public class HtmlGridWriter implements GridWriter {
         body {
           font-family: arial, sans-serif;
           background-color: #fff;
+          margin: 0;
+          padding: 0;
         }
         .gridDiv {
           margin: auto;
